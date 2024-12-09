@@ -1,4 +1,4 @@
-type Tabkey = 'General' | 'Notifications' | 'Privacy'
+export type Tabkey = 'General' | 'Notifications' | 'Privacy'
 
 export interface Tab {
   key: Tabkey
