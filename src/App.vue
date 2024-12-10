@@ -7,7 +7,9 @@
         </li>
       </ul>
     </nav>
-    <component :is="currentTabComponent"></component>
+    <Transition mode="out-in">
+      <component :is="currentTabComponent"></component>
+    </Transition>
   </main>
 </template>
 
@@ -42,3 +44,14 @@ const currentTabComponent = computed(
   () => tabs.find((tab) => tab.key === currentTab.value)?.component,
 )
 </script>
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
