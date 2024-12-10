@@ -31,5 +31,4 @@ const tabs: Tab[] = [
 ]
 
 const currentTab = ref<Tabkey>('General')
-console.log(currentTab)
 </script>
