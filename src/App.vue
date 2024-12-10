@@ -7,28 +7,38 @@
         </li>
       </ul>
     </nav>
+    <component :is="currentTabComponent"></component>
   </main>
 </template>
 
 <script setup lang="ts">
 import type { Tab, Tabkey } from './types'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import TabLink from './components/TabLink.vue'
+import GeneralSetttings from './components/GeneralSetttings.vue'
+import NotificationsSettings from './components/NotificationsSettings.vue'
+import PrivacySettings from './components/PrivacySettings.vue'
 
 const tabs: Tab[] = [
   {
     key: 'General',
     label: 'General',
+    component: GeneralSetttings,
   },
   {
     key: 'Notifications',
     label: 'Notifications',
+    component: NotificationsSettings,
   },
   {
     key: 'Privacy',
     label: 'Privacy',
+    component: PrivacySettings,
   },
 ]
 
 const currentTab = ref<Tabkey>('General')
+const currentTabComponent = computed(
+  () => tabs.find((tab) => tab.key === currentTab.value)?.component,
+)
 </script>
