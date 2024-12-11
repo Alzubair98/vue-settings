@@ -16,8 +16,31 @@ const general = ref<GeneralSettings>({
   username: '',
 })
 
+interface NotificationsSetting {
+  email: boolean
+  sms: boolean
+}
+
+const notification = ref<NotificationsSetting>({
+  email: false,
+  sms: false,
+})
+
+interface PrivacySetting {
+  visbility: visbility
+  searchEngineIndexing: boolean
+}
+
+type visbility = 'public' | 'private'
+
+const privacy = ref<PrivacySetting>({
+  searchEngineIndexing: false,
+  visbility: 'public',
+})
 export function useSettings() {
   return {
     general,
+    privacy,
+    notification,
   }
 }
