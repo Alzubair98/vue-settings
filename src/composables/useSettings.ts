@@ -1,5 +1,5 @@
-import GeneralSetttings from '@/components/GeneralSetttings.vue'
 import { ref } from 'vue'
+
 interface GeneralSettings {
   username: string
   email: string
@@ -8,10 +8,16 @@ interface GeneralSettings {
   country: string
 }
 
-const general = ref<GeneralSetttings>({
+const general = ref<GeneralSettings>({
   about: '',
   country: 'USA',
   gender: 'male',
   email: '',
   username: '',
 })
+
+export function useSettings() {
+  return {
+    general,
+  }
+}
