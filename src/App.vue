@@ -8,7 +8,9 @@
       </ul>
     </nav>
     <FadeTransition>
-      <component :is="currentTabComponent"></component>
+      <KeepAlive>
+        <component :is="currentTabComponent"> </component>
+      </KeepAlive>
     </FadeTransition>
   </main>
 </template>

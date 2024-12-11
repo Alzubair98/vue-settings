@@ -40,6 +40,8 @@
 
 <script setup lang="ts">
 import { useSettings } from '../composables/useSettings'
+import { ref } from 'vue'
 
 const { general } = useSettings()
+const thisWillAlwaysBe0 = ref(0)
 </script>
