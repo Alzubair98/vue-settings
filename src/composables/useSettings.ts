@@ -21,6 +21,12 @@ const init = <T extends SettingsKey>(key: T, defaults: SettingsMap[T]) => {
   return stored !== null ? JSON.parse(stored) : defaults
 }
 
+const watcher =
+  <T extends SettingsKey>(key: T) =>
+  (value: SettingsMap[T]) => {
+    localStorage.setItem(key, JSON.stringify(value))
+  }
+
 const general = ref<GeneralSettings>(
   init('general', {
     about: '',
@@ -31,7 +37,7 @@ const general = ref<GeneralSettings>(
   }),
 )
 
-watch(general, (value) => localStorage.setItem('general', JSON.stringify(value)), { deep: true })
+watch(general, watcher('general'), { deep: true })
 
 interface NotificationsSetting {
   email: boolean
@@ -44,6 +50,8 @@ const notification = ref<NotificationsSetting>(
     sms: false,
   }),
 )
+
+watch(notification, watcher('notifications'), { deep: true })
 
 interface PrivacySetting {
   visbility: visbility
@@ -58,6 +66,9 @@ const privacy = ref<PrivacySetting>(
     searchEngineIndexing: false,
   }),
 )
+
+watch(privacy, watcher('privacy'), { deep: true })
+
 export function useSettings() {
   return {
     general,
