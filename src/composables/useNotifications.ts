@@ -5,23 +5,23 @@ interface Notification {
   message: string
 }
 
-const notification = ref<Notification[]>([])
+const notifications = ref<Notification[]>([])
 
 const addNotification = (message: string) => {
   const id = Date.now()
-  notification.value.push({ id, message })
+  notifications.value.push({ id, message })
 
-  setTimeout(() => removeNotifiation(id), 5000)
+  setTimeout(() => removeNotification(id), 5000)
 }
 
-const removeNotifiation = (id: number) => {
-  notification.value = notification.value.filter((n) => n.id !== id)
+const removeNotification = (id: number) => {
+  notifications.value = notifications.value.filter((n) => n.id !== id)
 }
 
 export function useNotifications() {
   return {
-    notification,
+    notifications,
     addNotification,
-    removeNotifiation,
+    removeNotification,
   }
 }
