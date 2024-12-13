@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { useNotifications } from '@/composables/useNotifications'
+import { useNotifications } from '../composables/useNotifications'
 import { useSettings } from '../composables/useSettings'
 
 const { general } = useSettings()
